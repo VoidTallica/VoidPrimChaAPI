@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using PrimaveraAPI.Class_;
-using PrimaveraAPI.Models;
+using PrimaveraAPI.DTO;
 using PrimaveraAPI.Repository;
 using System;
 using System.Threading.Tasks;

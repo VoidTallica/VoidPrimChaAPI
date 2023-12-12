@@ -1,5 +1,5 @@
 ﻿using PrimaveraAPI.Data;
-using PrimaveraAPI.Models;
+using PrimaveraAPI.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -48,7 +48,7 @@ namespace PrimaveraAPI.Repository
         {
             try
             {
-                var sql = $"INSERT INTO {nameof(sItem)} ({nameof(sItem.id)}, {nameof(sItem.name)}, {nameof(sItem.description)}, {nameof(sItem.price)}, " +
+                var sql = $"INSERT INTO salesItem ({nameof(sItem.id)}, {nameof(sItem.name)}, {nameof(sItem.description)}, {nameof(sItem.price)}, " +
                     $"{nameof(sItem.category)}, {nameof(sItem.dateCreate)}, {nameof(sItem.dateUpdate)}, {nameof(sItem.imageId)}, {nameof(sItem.imgPath)}, " +
                     $"{nameof(sItem.isHighlighted)}, {nameof(sItem.isAvailable)}) " +
                           $"VALUES ('{sItem.id}', '{sItem.name}', '{sItem.description}', '{sItem.price}', '{sItem.category}', " +
@@ -68,7 +68,7 @@ namespace PrimaveraAPI.Repository
         {
             try
             {
-                var sql = $"UPDATE {nameof(sItem)} SET {nameof(sItem.id)} = '{sItem.id}', {nameof(sItem.name)} = '{sItem.name}', " +
+                var sql = $"UPDATE salesItem SET {nameof(sItem.id)} = '{sItem.id}', {nameof(sItem.name)} = '{sItem.name}', " +
                     $"{nameof(sItem.description)} = '{sItem.description}', {nameof(sItem.price)} = '{sItem.price}', " +
                     $"{nameof(sItem.category)} = '{sItem.category}', " +
                     $"{nameof(sItem.dateUpdate)} = '{sItem.dateUpdate.ToString("yyyy-MM-dd HH:mm:ss.fff")}', " +
@@ -86,7 +86,7 @@ namespace PrimaveraAPI.Repository
         {
             try
             {
-                var sql = $"UPDATE {nameof(sItem)} SET {nameof(sItem.id)} = '{sItem.id}', {nameof(sItem.isAvailable)} = '{sItem.isAvailable}'" +
+                var sql = $"UPDATE salesItem SET {nameof(sItem.id)} = '{sItem.id}', {nameof(sItem.isAvailable)} = '{sItem.isAvailable}'" +
                     $" WHERE {nameof(sItem.id)} = ' {sItem.id}';";
                 return await this.RecordsAffected(sql) == 1;
             }

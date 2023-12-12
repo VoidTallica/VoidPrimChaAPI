@@ -1,16 +1,16 @@
 ﻿using PrimaveraAPI.Class_;
-using PrimaveraAPI.DTO;
 using PrimaveraAPI.Repository;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PrimaveraAPI.Models
+namespace PrimaveraAPI.DTO
 {
     [Entity(Table = "salesItem")]
     public class SalesItemDTO : BaseDTO<SalesItemDTO, int>
     {
         public int id { get; set; }
+        public int idSalesUnit { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public decimal price { get; set; }
