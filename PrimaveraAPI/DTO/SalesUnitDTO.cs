@@ -2,6 +2,7 @@
 using PrimaveraAPI.Repository;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PrimaveraAPI.DTO
@@ -9,6 +10,7 @@ namespace PrimaveraAPI.DTO
     [Entity(Table = "salesUnit")]
     public class SalesUnitDTO : BaseDTO<SalesUnitDTO, int>
     {
+        [JsonIgnore]
         public int id { get; set; }
         public string name { get; set; }
         public string location { get; set; }
@@ -22,6 +24,15 @@ namespace PrimaveraAPI.DTO
         {
             return new SalesUnitRepository();
         }
+        internal async Task<SalesUnitDTO> GetSalesUnitAsync(int key)
+        {
+            return await ((SalesUnitRepository)GetRepository()).GetSalesUnitAsync(key);
+        }
+        internal async Task<List<SalesUnitDTO>> GetSalesUnitsByNameAsync(string nameCustomer)
+        {
+            return await ((SalesUnitRepository)GetRepository()).GetSalesUnitsByNameAsync(nameCustomer);
+        }
+        
 
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace PrimaveraAPI.Controllers
 {
     [EnableCors(Cors.CorsPolicy)]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     //[Authorize(Roles = "Admin")]
     [ApiController]
     public class SalesItemController : Controller
@@ -163,6 +163,7 @@ namespace PrimaveraAPI.Controllers
                 return NotFound(new { message = "SalesItem with id:" + id + " not found" });
             try
             {
+                body.id = id;
                 if (await ((SalesItemRepository)body.GetRepository()).EditAsync(body))
                     return Ok();
                 else
@@ -185,6 +186,7 @@ namespace PrimaveraAPI.Controllers
                 return NotFound(new { message = "SalesItem with id:" + id + " not found" });
             try
             {
+                body.id = id;
                 if (await ((SalesItemRepository)body.GetRepository()).EditThumbnailAsync(body))
                     return Ok();
                 else
@@ -206,6 +208,7 @@ namespace PrimaveraAPI.Controllers
                 return NotFound(new { message = "SalesItem with id:" + id + " not found" });
             try
             {
+                body.id = id;
                 if (await ((SalesItemRepository)body.GetRepository()).EditAvailableAsync(body))
                     return Ok();
                 else

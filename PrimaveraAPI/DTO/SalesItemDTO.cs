@@ -1,7 +1,9 @@
 ﻿using PrimaveraAPI.Class_;
 using PrimaveraAPI.Repository;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PrimaveraAPI.DTO
@@ -9,6 +11,7 @@ namespace PrimaveraAPI.DTO
     [Entity(Table = "salesItem")]
     public class SalesItemDTO : BaseDTO<SalesItemDTO, int>
     {
+        [JsonIgnore]
         public int id { get; set; }
         public int idSalesUnit { get; set; }
         public string name { get; set; }

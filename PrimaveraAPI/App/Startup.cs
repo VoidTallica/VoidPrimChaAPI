@@ -1,20 +1,15 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using PrimaveraAPI.Class_;
 using PrimaveraAPI.Data;
-using System;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrimaveraAPI
 {
@@ -55,6 +50,12 @@ namespace PrimaveraAPI
                 });
             });
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VoidTallica Primavera API", Version = "v1" });
+                c.EnableAnnotations();
+            });
             //Add authentication to the API and JWT tokens
             /*
             services.AddAuthentication(options =>
@@ -127,6 +128,14 @@ namespace PrimaveraAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
 
             //// Configure the Localization middleware
